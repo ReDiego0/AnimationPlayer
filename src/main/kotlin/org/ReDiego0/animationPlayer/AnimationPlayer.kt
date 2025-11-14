@@ -8,7 +8,6 @@ import org.bukkit.plugin.java.JavaPlugin
 class AnimationPlayer : JavaPlugin() {
 
     lateinit var protocolManager: ProtocolManager
-        private set
 
     override fun onEnable() {
         if (Bukkit.getPluginManager().getPlugin("ProtocolLib") == null) {
@@ -25,6 +24,7 @@ class AnimationPlayer : JavaPlugin() {
         server.pluginManager.registerEvents(PlayerJoinListener(this), this)
 
         logger.info("AnimationPlayer v${description.version} habilitado correctamente.")
+        logger.info("¡Listo para mostrar animaciones!")
     }
 
     override fun onDisable() {
