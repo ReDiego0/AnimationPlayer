@@ -15,13 +15,6 @@ inline fun <reified T : ItemMeta> ItemStack.meta(crossinline block: T.() -> Unit
 }
 
 object CustomTotemRessurectEffect {
-    /**
-     * Sends a custom totem animation with the texture of a totem with a [customModelDataId]
-     *
-     * @param player            the player that will receive the totem animation
-     * @param customModelDataId the model ID of the custom totem
-     * @param protocolManager   el manager de ProtocolLib
-     */
     fun sendCustomTotemAnimation(player: Player, customModelDataId: Int, protocolManager: ProtocolManager) =
         sendCustomTotemAnimation(
             player,
@@ -31,22 +24,15 @@ object CustomTotemRessurectEffect {
             protocolManager
         )
 
-    /**
-     * Sends a custom totem animation with the texture of a totem with a [customModelDataId]
-     *
-     * @param player    the player that will receive the totem animation
-     * @param itemStack the ItemStack that will be set in the player's offhand. Needs to be a [Material.TOTEM_OF_UNDYING].
-     * @param protocolManager   el manager de ProtocolLib
-     */
     fun sendCustomTotemAnimation(player: Player, itemStack: ItemStack, protocolManager: ProtocolManager) {
 
         if (itemStack.type != Material.TOTEM_OF_UNDYING)
-            throw IllegalArgumentException("ItemStack $itemStack isn't a Totem of Undying!")
-
+            throw IllegalArgumentException("El ItemStack $itemStack no es un Tótem de la Inmortalidad!")
         val packet = protocolManager.createPacket(PacketType.Play.Server.SET_SLOT)
+
         packet.integers.write(0, 0)
         packet.integers.write(1, 0)
-        packet.integers.write(2, 45)
+        packet.shorts.write(0, 45.toShort())
         packet.itemModifier.write(0, itemStack)
 
         try {
