@@ -32,7 +32,7 @@ object CustomTotemRessurectEffect {
 
         packet.integers.write(0, 0)
         packet.integers.write(1, 0)
-        packet.shorts.write(0, 45.toShort())
+        packet.shorts.write(0, 45)
         packet.itemModifier.write(0, itemStack)
 
         try {
