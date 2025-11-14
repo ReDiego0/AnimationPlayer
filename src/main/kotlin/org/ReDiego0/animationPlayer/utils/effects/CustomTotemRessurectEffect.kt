@@ -28,11 +28,11 @@ object CustomTotemRessurectEffect {
 
         if (itemStack.type != Material.TOTEM_OF_UNDYING)
             throw IllegalArgumentException("El ItemStack $itemStack no es un Tótem de la Inmortalidad!")
-        val packet = protocolManager.createPacket(PacketType.Play.Server.SET_SLOT)
 
+        val packet = protocolManager.createPacket(PacketType.Play.Server.SET_SLOT)
         packet.integers.write(0, 0)
         packet.integers.write(1, 0)
-        packet.shorts.write(0, 45)
+        packet.integers.write(0, 45)
         packet.itemModifier.write(0, itemStack)
 
         try {
