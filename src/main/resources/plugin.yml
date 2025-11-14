@@ -1,0 +1,5 @@
+name: AnimationPlayer
+version: '1.0'
+main: org.ReDiego0.animationPlayer.AnimationPlayer
+api-version: '1.20'
+depend: [ ProtocolLib ]
