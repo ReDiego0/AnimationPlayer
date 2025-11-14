@@ -1,2 +1,32 @@
 # El CustomModelData Id del totem animado que se ha configurado en el paquete de recursos
-totem-model-id: 0
+totem-model-id: 940
+
+# Retraso en ticks para mostrar la animación del tótem
+# 20 ticks == 1 segundo
+animation-delay-ticks: 30
+
+# Retraso en ticks para mostrar el título, el chat y el sonido.
+# DEBE SER MAYOR que 'animation-delay-ticks' para no romper la animación.
+effects-delay-ticks: 50
+
+title:
+  enabled: true
+  text: "&e!Bienvenido!"
+  subtitle: "&f%player_name%"
+  # Tiempos en ticks
+  fade-in: 10
+  stay: 60
+  fade-out: 10
+
+chat-message:
+  enabled: true
+  message:  |
+    &f========================
+    &e Bienvenido a nuestro servidor
+    &f========================
+
+join-sound:
+  enabled: true
+  sound-key: "minecraft:entity.player.levelup"
+  volume: 1.0
+  pitch: 1.0
