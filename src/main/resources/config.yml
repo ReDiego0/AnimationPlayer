@@ -1,16 +1,18 @@
 # El CustomModelData Id del totem animado que se ha configurado en el paquete de recursos
-totem-model-id: 0
+totem-model-id: 940
 
-# Retraso en ticks para mostrar los efectos de bienvenida (animación, sonidos, textos)
+# Retraso en ticks para mostrar la animación del tótem
 # 20 ticks == 1 segundo
-# Pocos ticks pueden hacer que el usuario no vea la animación debido a la pantalla de carga
-join-delay-ticks: 40
+animation-delay-ticks: 30
+
+# Retraso en ticks para mostrar el título, el chat y el sonido.
+# DEBE SER MAYOR que 'animation-delay-ticks' para no romper la animación.
+effects-delay-ticks: 50
 
 title:
   enabled: true
   text: "&e!Bienvenido!"
   subtitle: "&f%player_name%"
-  # --------
   # Tiempos en ticks
   fade-in: 10
   stay: 60

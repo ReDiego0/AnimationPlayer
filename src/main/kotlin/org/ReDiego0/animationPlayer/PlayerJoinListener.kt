@@ -15,23 +15,27 @@ class PlayerJoinListener(private val plugin: AnimationPlayer) : Listener {
         val player = event.player
         val config = plugin.config
 
-        val delay = config.getLong("join-delay-ticks", 40L)
+        val modelId = plugin.config.getInt("totem-model-id")
+        if (modelId == 0) {
+            plugin.logger.warning("El 'totem-model-id' en config.yml no está configurado correctamente o es 0. No se mostrará la animación.")
+            return
+        }
+        plugin.server.scheduler.runTaskLater(plugin, Runnable {
+            try {
+                CustomTotemRessurectEffect.sendCustomTotemAnimation(
+                    player,
+                    modelId,
+                    plugin.protocolManager
+                )
+            } catch (e: Exception) {
+                plugin.logger.severe("Error al intentar enviar la animación del tótem al jugador ${player.name}:")
+                e.printStackTrace()
+            }
+        }, 30L)
 
         plugin.server.scheduler.runTaskLater(plugin, Runnable {
-            if (!player.isOnline) {
-                return@Runnable
-            }
-
+            if (!player.isOnline) return@Runnable
             try {
-                val modelId = config.getInt("totem-model-id")
-                if (modelId > 0) {
-                    CustomTotemRessurectEffect.sendCustomTotemAnimation(
-                        player,
-                        modelId,
-                        plugin.protocolManager
-                    )
-                }
-
                 if (config.getBoolean("title.enabled")) {
                     val titleRaw = config.getString("title.text") ?: ""
                     val subtitleRaw = config.getString("title.subtitle") ?: ""
@@ -67,12 +71,9 @@ class PlayerJoinListener(private val plugin: AnimationPlayer) : Listener {
                 plugin.logger.severe("Error al ejecutar los efectos de bienvenida para ${player.name}:")
                 e.printStackTrace()
             }
-        }, delay)
-    }
+        }, 50L)
 
-    /**
-     * Función de ayuda para traducir códigos de color (\& ) y placeholders (\%player_name\%).
-     */
+    }
     private fun formatString(player: Player, text: String): String {
         val replacedText = text.replace("%player_name%", player.name)
         return ChatColor.translateAlternateColorCodes('&', replacedText)
