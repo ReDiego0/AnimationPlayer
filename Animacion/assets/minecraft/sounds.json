@@ -1,0 +1,16 @@
+{
+  "item.totem.use": {
+    "replace": true,
+    "sounds": []
+  },
+
+  "plugin.sonido.bienvenida": {
+    "category": "player",
+    "sounds": [
+      {
+        "name": "custom/bienvenida",
+        "stream": false
+      }
+    ]
+  }
+}
